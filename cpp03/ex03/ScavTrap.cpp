@@ -6,7 +6,7 @@
 /*   By: rothiery <rothiery@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 12:56:53 by rothiery          #+#    #+#             */
-/*   Updated: 2025/06/12 14:30:17 by rothiery         ###   ########.fr       */
+/*   Updated: 2025/06/12 12:08:36 by rothiery         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	ScavTrap::attack(const std::string &target)
 	}
 	else if (this->_energyPoints <= 0)
 	{
-		std::cout << this->_name << " has not enought energy for ScavTrap attack" << std::endl;
+		std::cout << this->_name << " has not enought energy for the ScavTrap to attack" << std::endl;
 		return ;
 	}
 	this->_energyPoints--;

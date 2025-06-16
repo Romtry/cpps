@@ -10,31 +10,41 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
+
+// int	main()
+// {
+// 	ClapTrap	one("ct 1");
+// 	ClapTrap	two("ct 2");
+// 	ClapTrap	tree("ct 3");
+// 	ClapTrap	four("ct 4");
+
+// 	two.takeDamage(5);
+// 	one.takeDamage(10);
+// 	tree.takeDamage(15);
+// 	one.takeDamage(5);
+// 	one.attack("ct 2");
+// 	four.attack("ct 1");
+// 	four.beRepaired(1);
+// 	four.attack("ct 1");
+// 	four.beRepaired(1);
+// 	four.attack("ct 1");
+// 	four.beRepaired(1);
+// 	four.attack("ct 1");
+// 	four.beRepaired(1);
+// 	four.attack("ct 1");
+// 	four.beRepaired(1);
+// 	four.attack("ct 1");
+// 	four.beRepaired(1);
+// 	four.takeDamage(0);
+// }
 
 int	main()
 {
-	ClapTrap	one("ct 1");
-	ClapTrap	two("ct 2");
-	ClapTrap	tree("ct 3");
-	ClapTrap	four("ct 4");
+	ScavTrap	one("st 1");
 
-	two.takeDamage(5);
-	one.takeDamage(10);
-	tree.takeDamage(15);
-	one.takeDamage(5);
-	one.attack("ct 2");
-	four.attack("ct 1");
-	four.beRepaired(1);
-	four.attack("ct 1");
-	four.beRepaired(1);
-	four.attack("ct 1");
-	four.beRepaired(1);
-	four.attack("ct 1");
-	four.beRepaired(1);
-	four.attack("ct 1");
-	four.beRepaired(1);
-	four.attack("ct 1");
-	four.beRepaired(1);
-	four.takeDamage(0);
+	one.attack("test");
+	one.beRepaired(1);
+	one.takeDamage(1);
+	one.guardGate();
 }

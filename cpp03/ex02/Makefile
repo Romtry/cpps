@@ -2,7 +2,7 @@ NAME=	a.out
 
 VPATH=
 
-SRC=	main.cpp	ClapTrap.cpp	ScavTrap.cpp\
+SRC=	main.cpp	ClapTrap.cpp	ScavTrap.cpp	FragTrap.cpp\
 
 
 OFILES= ${SRC:%.cpp=obj/%.o}

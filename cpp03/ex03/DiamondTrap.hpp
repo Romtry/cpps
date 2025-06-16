@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ClapTrap.hpp                                       :+:      :+:    :+:   */
+/*   DiamondTrap.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rothiery <rothiery@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/04 09:21:05 by rothiery          #+#    #+#             */
-/*   Updated: 2025/06/12 10:16:48 by rothiery         ###   ########.fr       */
+/*   Created: 2025/06/12 09:09:40 by rothiery          #+#    #+#             */
+/*   Updated: 2025/06/12 14:42:29 by rothiery         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include <iostream>
+#include "FragTrap.hpp"
+#include "ScavTrap.hpp"
 
-class	ClapTrap
+class	DiamondTrap : public ScavTrap, public FragTrap
 {
 	public:
-				ClapTrap();
-				ClapTrap(std::string Name);
-				~ClapTrap();
+				DiamondTrap();
+				DiamondTrap(std::string name);
+				~DiamondTrap();
+		void	whoami();
 		void	attack(const std::string &target);
-		void	takeDamage(unsigned int amount);
-		void	beRepaired(unsigned int amount);
 
 	private:
-		std::string const	_Name;
-		int					_hitPoints;
-		int					_energyPoints;
-		int					_AttackDamage;
+		std::string	_name;
 };

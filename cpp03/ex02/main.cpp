@@ -1,32 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ClapTrap.hpp                                       :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rothiery <rothiery@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/04 09:21:05 by rothiery          #+#    #+#             */
-/*   Updated: 2025/06/12 10:16:48 by rothiery         ###   ########.fr       */
+/*   Created: 2025/06/04 12:25:35 by rothiery          #+#    #+#             */
+/*   Updated: 2025/06/16 12:00:57 by rothiery         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#include "FragTrap.hpp"
 
-#include <iostream>
-
-class	ClapTrap
+int	main()
 {
-	public:
-				ClapTrap();
-				ClapTrap(std::string Name);
-				~ClapTrap();
-		void	attack(const std::string &target);
-		void	takeDamage(unsigned int amount);
-		void	beRepaired(unsigned int amount);
+	FragTrap	one("test");
 
-	private:
-		std::string const	_Name;
-		int					_hitPoints;
-		int					_energyPoints;
-		int					_AttackDamage;
-};
+	one.highFivesGuys();
+}
