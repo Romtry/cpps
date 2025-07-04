@@ -6,7 +6,7 @@
 /*   By: rothiery <rothiery@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 08:57:10 by rothiery          #+#    #+#             */
-/*   Updated: 2025/06/30 10:58:46 by rothiery         ###   ########.fr       */
+/*   Updated: 2025/07/04 08:49:41 by rothiery         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,25 @@
 #include "ICharacter.hpp"
 #include <iostream>
 
+class ICharacter;
+
 class AMateria
 {
 	public:
 							AMateria();
 							AMateria(AMateria &original);
 							AMateria(const std::string &type);
-							~AMateria();
+		virtual				~AMateria();
 		AMateria			&operator=(AMateria &original);
 		const std::string 	&geType() const;
 		virtual	AMateria	*clone() const = 0;
 		virtual	void		use(ICharacter &target);
+		bool				get_equiped();
+		void				set_equiped();
 
 	protected:
-		std::string type;
+		std::string _type;
 
-	private:
-		
+		private:
+		bool		_equiped;
 };

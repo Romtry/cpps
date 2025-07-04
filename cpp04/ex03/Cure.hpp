@@ -6,7 +6,7 @@
 /*   By: rothiery <rothiery@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 10:25:32 by rothiery          #+#    #+#             */
-/*   Updated: 2025/06/30 11:10:11 by rothiery         ###   ########.fr       */
+/*   Updated: 2025/07/02 14:26:28 by rothiery         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ class Cure: public AMateria
 					~Cure();
 		Cure		&operator=(Cure &original);
 		AMateria	*clone() const;
+		void		use(ICharacter &target);
 
 	protected:
 		
