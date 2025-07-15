@@ -6,7 +6,7 @@
 /*   By: rothiery <rothiery@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 12:44:41 by rothiery          #+#    #+#             */
-/*   Updated: 2025/07/04 10:09:08 by rothiery         ###   ########.fr       */
+/*   Updated: 2025/07/15 09:50:01 by rothiery         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 Character::Character()
 {
-	std::ostringstream test;
+	std::ostringstream temp;
 	static int number = 0;
 
 	for (unsigned int i = 0; i < 4; i++)
@@ -23,9 +23,9 @@ Character::Character()
 	for (unsigned int i = 0; i < 4; i++)
 		this->_floor[i] = NULL;
 	number++;
-	test << "Player " << number;
-	this->_name = test.str();
-	std::cout << "Character constructor called" << std::endl;
+	temp << "Player " << number;
+	this->_name = temp.str();
+	std::cout << this->_name << " Character constructor called" << std::endl;
 }
 
 Character::Character(Character &original)
@@ -35,7 +35,7 @@ Character::Character(Character &original)
 	for (unsigned int i = 0; i < 4; i++)
 		this->_floor[i] = NULL;
 	this->_name = original._name;
-	std::cout << "Character copy constructor called" << std::endl;
+	std::cout << this->_name << " Character copy constructor called" << std::endl;
 }
 
 Character::Character(std::string Name)
