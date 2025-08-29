@@ -12,7 +12,10 @@
 
 #pragma once
 
+#include "Form.hpp"
 #include <iostream>
+
+class Form;
 
 class Bureaucrat
 {
@@ -20,11 +23,11 @@ class Bureaucrat
 							Bureaucrat(const std::string &Name, short grade);
 							Bureaucrat(const Bureaucrat &original);
 							~Bureaucrat();
-		std::string			getName();
-		short				getGrade();
+		std::string			getName() const;
+		short				getGrade() const;
 		void				incrementGrade();
 		void				decrementGrade();
-
+		void				signForm(Form f) const;
 
 		class				GradeTooHighException : public std::exception
 		{
@@ -45,4 +48,4 @@ class Bureaucrat
 		short				_grade;
 };
 
-std::ostream &operator<<(std::ostream &os, Bureaucrat b);
+std::ostream &operator<<(std::ostream &os, const Bureaucrat &b);

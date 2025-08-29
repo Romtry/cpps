@@ -2,7 +2,7 @@ NAME=	a.out
 
 VPATH=
 
-SRC=	main.cpp AMateria.cpp Character.cpp Cure.cpp Ice.cpp MateriaSource.cpp\
+SRC=	main.cpp Bureaucrat.cpp\
 
 
 OFILES= ${SRC:%.cpp=obj/%.o}

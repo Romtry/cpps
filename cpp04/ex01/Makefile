@@ -7,8 +7,8 @@ SRC=	main.cpp	Dog.cpp	Animal.cpp	Cat.cpp Brain.cpp\
 
 OFILES= ${SRC:%.cpp=obj/%.o}
 
-CC= 	c++ -Wextra -Wall -Werror -std=c++98
-CFLAGS= -g3
+CC= 	c++
+CFLAGS= -g3 -Wextra -Wall -Werror -std=c++98
 RESET = \033[0m
 GRAS = \033[1m
 ITALIQUE = \033[3m

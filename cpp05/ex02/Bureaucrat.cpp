@@ -20,11 +20,9 @@ Bureaucrat::Bureaucrat(const std::string &name, short Grade)
 		throw (GradeTooHighException());
 	else if (Grade > 150)
 		throw (GradeTooLowException());
-	else
-		this->_grade = Grade;
 }
 
-Bureaucrat::Bureaucrat(Bureaucrat &original)
+Bureaucrat::Bureaucrat(const Bureaucrat &original)
 	: _name(original._name), _grade(original._grade)
 {
 	std::cout << "Bureaucrat copy constructor called " << this->_name << " created" << std::endl;
@@ -35,12 +33,12 @@ Bureaucrat::~Bureaucrat()
 	std::cout << "Bureaucrat destructor called" << std::endl;
 }
 
-short	Bureaucrat::getGrade()
+short	Bureaucrat::getGrade() const
 {
 	return (this->_grade);
 }
 
-std::string	Bureaucrat::getName()
+std::string	Bureaucrat::getName() const
 {
 	return (this->_name);
 }
@@ -75,17 +73,23 @@ void Bureaucrat::decrementGrade()
 	}
 }
 
+void Bureaucrat::signForm(Form f) const
+{
+	f.beSigned(*this);
+}
+
+
 const char	*Bureaucrat::GradeTooHighException::what() const throw()
 {
-	return ("GradeTooHighException");
+	return ("GradeTooHighException called grade is now 1");
 }
 
 const char	*Bureaucrat::GradeTooLowException::what() const throw()
 {
-	return ("GradeToolowException");
+	return ("GradeTooLowException called grade is now 150");
 }
 
-std::ostream		&operator<<(std::ostream& os, Bureaucrat b)
+std::ostream		&operator<<(std::ostream& os, const Bureaucrat &b)
 {
 	os << b.getName() << ", bureaucrat grade " << b.getGrade() << std::endl;
 	return (os);

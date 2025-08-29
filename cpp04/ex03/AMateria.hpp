@@ -6,7 +6,7 @@
 /*   By: rothiery <rothiery@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 08:57:10 by rothiery          #+#    #+#             */
-/*   Updated: 2025/07/04 08:49:41 by rothiery         ###   ########.fr       */
+/*   Updated: 2025/08/06 14:35:30 by rothiery         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ class AMateria
 	protected:
 		std::string _type;
 
-		private:
+	private:
 		bool		_equiped;
 };
