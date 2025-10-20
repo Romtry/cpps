@@ -35,6 +35,6 @@ class Form
 		bool				_signed;
 		const int			_grade_sign;
 		const int			_grade_exec;
-		std::string _name;
+		const std::string	_name;
 };
 std::ostream &operator<<(std::ostream &os, const Form &f);

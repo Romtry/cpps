@@ -7,7 +7,7 @@
 Form::Form(const std::string &name, const short grade_sign, const short grade_exec)
 	: _signed(false), _grade_sign(grade_sign), _grade_exec(grade_exec), _name(name)
 {
-	std::cout << "Form constructor called " << this->_name << " created" << std::endl;
+	std::cout << "Form constructor called " << this->_name << " created with grade_sign : " << this->_grade_sign << std::endl;
 	if (grade_exec < 1 || grade_sign < 1)
 		throw (GradeTooHighException());
 	if (grade_exec > 150 || grade_sign > 150)
@@ -17,7 +17,7 @@ Form::Form(const std::string &name, const short grade_sign, const short grade_ex
 Form::Form(const Form &original)
 : _signed(original.getSign()), _grade_sign(original.getGradeSign()), _grade_exec(original.getGradeExec()), _name(original.getName())
 {
-	std::cout << "Form copy constructor called " << this->_name << " created" << std::endl;
+	std::cout << "Form copy constructor called " << this->_name << " created with grade_sign : " << this->_grade_sign << std::endl;
 }
 
 Form::~Form()

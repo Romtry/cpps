@@ -2,7 +2,7 @@ NAME=	a.out
 
 VPATH=
 
-SRC=	main.cpp Bureaucrat.cpp\
+SRC=	main.cpp Bureaucrat.cpp \
 
 
 OFILES= ${SRC:%.cpp=obj/%.o}
@@ -35,28 +35,21 @@ all:	${NAME}
 
 ${NAME}:		${OFILES}
 	   @${CC} ${CFLAGS} ${OFILES} -o ${NAME} -lreadline -lncurses
-	@echo "\n\n${GREEN}[✓] - ${_GREEN}${NAME}${GREEN} Successfully Compiled!${RESET}"
+	@echo "${GREEN}[✓] - ${_GREEN}${NAME}${GREEN} Successfully Compiled!${RESET}"
+
 
 obj/%.o:%.cpp
 	@mkdir -p obj/$(dir $<)
 	@${eval FICH_COUNT = ${shell expr ${FICH_COUNT} + 1}}
 	@${CC} ${CFLAGS} -c $< -o $@
-	@file_name=$(notdir $<) && \
-	echo " ${GRAS}${RED}-> COMPILATION EN COURS${RESET}${GRAS}${GREEN}${RESET}" && \
-	printf " ${RED}${GRAS}[${GREEN}%-.${BAR}s${DARK_RED}%-.${REST}s${RED}] [%d/%d (%d%%)] ${GREEN}%s  ✓                         ${DEF_COLOR}" "-----------------------" "-----------------------" ${FICH_COUNT} ${NBR_TOT_FICHIER} ${NBR_COMPILER} $${file_name} && \
-	echo "${UP}${UP}${UP}" && \
-	echo ""
 
 clean:
 	@rm -rf obj
 	@rm -f ${NAME}.log
-	@echo "${ORANGE}${GRAS}\tNETTOYAGE${RESET}"
-	@echo "${RED}${ITALIQUE} -les fichiers sont supprimés${RESET}"
 
 fclean:	clean
 	@rm -f ${NAME}
 	@${RM} ${NAME}
-	@echo "${RED}${ITALIQUE} -${NAME} est supprimê${RESET}"
 
 re:	fclean all
 

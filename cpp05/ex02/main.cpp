@@ -1,53 +1,89 @@
-//
-// Created by rothiery on 8/27/25.
-//
-
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
-void	tryForm(const std::string name, const int gradeRequiredToSign, const int gradeRequiredToExecute)
+// Grade to Sign: 25
+// Grade to Execute: 5
+// void	tryPresidential(const std::string &name, const short grade, const bool sign)
+// {
+// 	std::cout << "---" << std::endl;
+// 	try
+// 	{
+// 		Bureaucrat				test(name, grade);
+// 		PresidentialPardonForm form(name);
+//
+// 		if (sign)
+// 			test.signForm(form);
+// 		test.executeForm(form);
+// 	}
+// 	catch(const std::exception &e)
+// 	{
+// 		std::cerr << e.what() << std::endl;
+// 	}
+// }
+//
+// // Grade to Sign: 72
+// // Grade to Execute: 45
+void	tryRobotomy(const std::string &name, const short grade, const bool sign)
 {
+	std::cout << "---" << std::endl;
 	try
 	{
-		Form	form(name, gradeRequiredToSign, gradeRequiredToExecute);
-		std::cout << form << std::endl;
+		Bureaucrat			test(name, grade);
+		RobotomyRequestForm	form(name);
+
+		if (sign)
+			test.signForm(form);
+		test.executeForm(form);
 	}
 	catch(const std::exception &e)
 	{
 		std::cerr << e.what() << std::endl;
 	}
-
 }
 
-void	trySignForm(const std::string name, const int grade)
-{
-	try
-	{
-		Bureaucrat	test(name, grade);
-		Form		form("Form", 50, 50);
-		test.signForm(form);
-	}
-	catch(const std::exception &e)
-	{
-		std::cerr << e.what() << std::endl;
-	}
-}
+// Grade to Sign: 145
+// Grade to Execute: 137
+
+// void	tryShrubbery(const std::string& name, const short grade, const bool sign)
+// {
+// 	std::cout << "---" << std::endl;
+// 	try
+// 	{
+// 		const Bureaucrat				test(name, grade);
+// 		ShrubberyCreationForm form(name);
+//
+// 		if (sign)
+// 			test.signForm(form);
+// 		test.executeForm(form);
+// 	}
+// 	catch(const std::exception &e)
+// 	{
+// 		std::cerr << e.what() << std::endl;
+// 	}
+// }
 
 int	main()
 {
-	std::cout << "=== Signing ===" << std::endl;
-	trySignForm("Toto", 1);
-	trySignForm("Tata", 49);
-	trySignForm("Titi", 50);
-	trySignForm("Tutu", 51);
+	// std::cout << "=== Shrubbery ===" << std::endl;
+	// tryShrubbery("Toto", 137, true);
+	// tryShrubbery("Tata", 145, true);
+	// tryShrubbery("Titi", 150, true);
+	// tryShrubbery("Tutu", 1, false);
 
-	std::cout << "\n=== Forms ===" << std::endl;
-	tryForm("Formox", 1, 150);
-	tryForm("Formax", 150, 1);
-	tryForm("Formix", 0, 50);
-	tryForm("Formux", 50, 151);
+	std::cout << "\n=== Robotomy ===" << std::endl;
+	tryRobotomy("Toto", 45, true);
+	tryRobotomy("Tata", 72, true);
+	tryRobotomy("Titi", 150, true);
+	tryRobotomy("Tutu", 1, false);
+	//
+	// std::cout << "\n=== Presidential ===" << std::endl;
+	// tryPresidential("Toto", 5, true);
+	// tryPresidential("Tata", 25, true);
+	// tryPresidential("Titi", 150, true);
+	// tryPresidential("Tutu", 1, false);
 
 	return (0);
 }
-
-

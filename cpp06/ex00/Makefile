@@ -2,7 +2,7 @@ NAME=	a.out
 
 VPATH=
 
-SRC=	main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp\
+SRC=	main.cpp ScalarConverter.cpp\
 
 
 OFILES= ${SRC:%.cpp=obj/%.o}

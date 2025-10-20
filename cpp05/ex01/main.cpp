@@ -16,7 +16,6 @@ void	tryForm(const std::string name, const int gradeRequiredToSign, const int gr
 	{
 		std::cerr << e.what() << std::endl;
 	}
-
 }
 
 void	trySignForm(const std::string name, const int grade)

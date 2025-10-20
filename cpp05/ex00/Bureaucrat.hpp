@@ -37,9 +37,6 @@ class Bureaucrat
 				virtual const char *what() const throw();
 		};
 
-
-	protected:
-
 	private:
 		const std::string	_name;
 		short				_grade;

@@ -35,7 +35,7 @@ all:	${NAME}
 
 ${NAME}:		${OFILES}
 	   @${CC} ${CFLAGS} ${OFILES} -o ${NAME} -lreadline -lncurses
-	@echo "\n\n${GREEN}[✓] - ${_GREEN}${NAME}${GREEN} Successfully Compiled!${RESET}"
+	@echo "${GREEN}[✓] - ${_GREEN}${NAME}${GREEN} Successfully Compiled!${RESET}"
 
 
 obj/%.o:%.cpp
