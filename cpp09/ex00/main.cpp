@@ -4,20 +4,19 @@
 
 #include  "BitcoinExchange.hpp"
 
-int	main(int argc, char **argv)
+int	main(const int argc, char **argv)
 {
-	if (argc < 2)
-		std::cout << "need a file" << std::endl;
-	for (unsigned int i = 1; argv[i]; i++)
+	if (argc != 2)
+		std::cout << "wrong args: ./btc <file.csv>" << std::endl;
+	try
 	{
-		try
-		{
-			BitcoinExchange test(argv[i]);
-		}
-		catch (const std::exception &e)
-		{
-			std::cerr << e.what() << std::endl;
-		}
-
+		BitcoinExchange test;
+		test.Init();
+		test.Exec(argv[1]);
+	}
+	catch (const std::exception &e)
+	{
+		std::cerr << e.what() << std::endl;
+		return (1);
 	}
 }
