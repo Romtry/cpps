@@ -16,6 +16,6 @@ class PmergeMe
 		void PmergMe();
 
 	private:
-		std::vector<int>  _list;
+		std::vector<int>  _vector;
 
 };

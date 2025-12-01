@@ -20,15 +20,16 @@ bool PmergeMe::Init(char **argv)
 				return (false);
 			}
 		}
-		_list.push_back(std::atoi(argv[i]));
+		_vector.push_back(std::atoi(argv[i]));
 	}
 	return (true);
 }
 
 void PmergeMe::PmergMe()
 {
-	int size = _list.size();
-	for (unsigned int i = 1; size / i > 2; i *= 2)
+	int size = _vector.size();
+	unsigned int i;
+	for (i = 1; size / i > 2; i *= 2)
 	{
 		unsigned int nBlocks;
 		if ((size / i) % 2)
@@ -38,16 +39,16 @@ void PmergeMe::PmergMe()
 		std::vector<int> save;
 		for (unsigned int j = 0; j < size % (i * 2); ++j)
 		{
-			save.push_back(_list.back());
-			_list.pop_back();
+			save.push_back(_vector.back());
+			_vector.pop_back();
 		}
 		std::vector<int> lists[nBlocks];
 		for (unsigned int j = 0; j < nBlocks; ++j)
 		{
 			for (unsigned int k = 0; k < i; ++k)
 			{
-				lists[j].push_back(_list.back());
-				_list.pop_back();
+				lists[j].push_back(_vector.back());
+				_vector.pop_back();
 			}
 		}
 		for (int j = nBlocks - 1; j >= 0; j -= 2)
@@ -56,12 +57,12 @@ void PmergeMe::PmergMe()
 			{
 				while (!lists[j].empty())
 				{
-					_list.push_back(lists[j].back());
+					_vector.push_back(lists[j].back());
 					lists[j].pop_back();
 				}
 				while (!lists[j - 1].empty())
 				{
-					_list.push_back(lists[j - 1].back());
+					_vector.push_back(lists[j - 1].back());
 					lists[j - 1].pop_back();
 				}
 			}
@@ -69,20 +70,39 @@ void PmergeMe::PmergMe()
 			{
 				while (!lists[j - 1].empty())
 				{
-					_list.push_back(lists[j - 1].back());
+					_vector.push_back(lists[j - 1].back());
 					lists[j - 1].pop_back();
 				}
 				while (!lists[j].empty())
 				{
-					_list.push_back(lists[j].back());
+					_vector.push_back(lists[j].back());
 					lists[j].pop_back();
 				}
 			}
 		}
 		while (!save.empty())
 		{
-			_list.push_back(save.back());
+			_vector.push_back(save.back());
 			save.pop_back();
 		}
+	}
+	std::cout << "[";
+	for (unsigned int j = 0; j < _vector.size(); ++j)
+	{
+		std::cout << _vector[j];
+		if (j + 1 < _vector.size())
+			std::cout << ", ";
+	}
+	std::cout << "]" << std::endl;
+	while (i > 0)
+	{
+		std::vector<int> save;
+		for (unsigned int j = 0; j < size % (i * 2); ++j)
+		{
+			save.push_back(_vector.back());
+			_vector.pop_back();
+		}
+		
+		i /= 2;
 	}
 }
