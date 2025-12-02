@@ -25,6 +25,8 @@ bool PmergeMe::Init(char **argv)
 	return (true);
 }
 
+
+
 void PmergeMe::PmergMe()
 {
 	int size = _vector.size();
@@ -86,23 +88,115 @@ void PmergeMe::PmergMe()
 			save.pop_back();
 		}
 	}
-	std::cout << "[";
-	for (unsigned int j = 0; j < _vector.size(); ++j)
-	{
-		std::cout << _vector[j];
-		if (j + 1 < _vector.size())
-			std::cout << ", ";
-	}
-	std::cout << "]" << std::endl;
+
 	while (i > 0)
 	{
+		const unsigned int nBlocks = size / i;
 		std::vector<int> save;
-		for (unsigned int j = 0; j < size % (i * 2); ++j)
+		for (unsigned int j = 0; j < size % i; ++j)
 		{
 			save.push_back(_vector.back());
 			_vector.pop_back();
 		}
-		
+		std::vector<int> bend[nBlocks / 2];
+		std::vector<int> main[nBlocks - nBlocks / 2];
+		bool b = false;
+		if (nBlocks % 2 == 1)
+			b = false;
+		else
+			b = true;
+		for (unsigned int l = 0; l < nBlocks; ++l)
+		{
+			if (b == false && l + 1 < nBlocks)
+			{
+				for (unsigned int j = 0; j < nBlocks; ++j)
+				{
+					std::cout << "list = [";
+					for (unsigned int k = 0; k < i; ++k)
+					{
+						std::cout << _vector.back();
+						if (k + 1 < i)
+							std::cout << ", ";
+						bend[j].push_back(_vector.back());
+						_vector.pop_back();
+					}
+					std::cout << "]" << std::endl;
+				}
+				std::cout << std::endl;
+				b = !b;
+			}
+			else
+			{
+				for (unsigned int j = 0; j < nBlocks; ++j)
+				{
+					std::cout << "list = [";
+					for (unsigned int k = 0; k < i; ++k)
+					{
+						std::cout << _vector.back();
+						if (k + 1 < i)
+							std::cout << ", ";
+						main[j].push_back(_vector.back());
+						_vector.pop_back();
+					}
+					std::cout << "]" << std::endl;
+				}
+				std::cout << std::endl;
+				b = !b;
+			}
+		}
+
+
+		for (unsigned int j = 0; j < nBlocks; ++j)
+		{
+			std::cout << "list = [";
+			for (unsigned int k = 0; k < i; ++k)
+			{
+				std::cout << _vector.back();
+				if (k + 1 < i)
+					std::cout << ", ";
+				lists[j].push_back(_vector.back());
+				_vector.pop_back();
+			}
+			std::cout << "]" << std::endl;
+		}
+		std::cout << std::endl;
+
+
+
+		for (int j = nBlocks - 1; j >= 0; j -= 2)
+		{
+			if (lists[j].front() < lists[j - 1].front())
+			{
+				while (!lists[j].empty())
+				{
+					_vector.push_back(lists[j].back());
+					lists[j].pop_back();
+				}
+				while (!lists[j - 1].empty())
+				{
+					_vector.push_back(lists[j - 1].back());
+					lists[j - 1].pop_back();
+				}
+			}
+			else
+			{
+				while (!lists[j - 1].empty())
+				{
+					_vector.push_back(lists[j - 1].back());
+					lists[j - 1].pop_back();
+				}
+				while (!lists[j].empty())
+				{
+					_vector.push_back(lists[j].back());
+					lists[j].pop_back();
+				}
+			}
+		}
+		while (!save.empty())
+		{
+			_vector.push_back(save.back());
+			save.pop_back();
+		}
 		i /= 2;
 	}
 }
