@@ -25,6 +25,18 @@ bool PmergeMe::Init(char **argv)
 	return (true);
 }
 
+void	Print_vector(std::vector<int> vector)
+{
+	std::cout << "[";
+	for (std::vector<int>::iterator it = vector.begin(); it != vector.end(); ++it)
+	{
+		std::cout << *it;
+		if (it + 1 < vector.end())
+			std::cout << ", ";
+	}
+	std::cout << "]" << std::endl;
+}
+
 
 
 void PmergeMe::PmergMe()
@@ -98,105 +110,129 @@ void PmergeMe::PmergMe()
 			save.push_back(_vector.back());
 			_vector.pop_back();
 		}
-		std::vector<int> bend[nBlocks / 2];
-		std::vector<int> main[nBlocks - nBlocks / 2];
+		unsigned int pend_index;
+		if (nBlocks % 2 == 1)
+			 pend_index = nBlocks / 2;
+		else
+			pend_index = (nBlocks / 2) - 1;
+		std::vector<std::vector<int> > pend;
+		std::vector<std::vector<int> > main;
+
+		// std::cout << "pend = " << (nBlocks / 2) - 1 << std::endl;
+		// std::cout << "main = " << (nBlocks - nBlocks / 2) + 1 << std::endl;
 		bool b = false;
 		if (nBlocks % 2 == 1)
 			b = false;
 		else
 			b = true;
-		for (unsigned int l = 0; l < nBlocks; ++l)
-		{
-			if (b == false && l + 1 < nBlocks)
-			{
-				for (unsigned int j = 0; j < nBlocks; ++j)
-				{
-					std::cout << "list = [";
-					for (unsigned int k = 0; k < i; ++k)
-					{
-						std::cout << _vector.back();
-						if (k + 1 < i)
-							std::cout << ", ";
-						bend[j].push_back(_vector.back());
-						_vector.pop_back();
-					}
-					std::cout << "]" << std::endl;
-				}
-				std::cout << std::endl;
-				b = !b;
-			}
-			else
-			{
-				for (unsigned int j = 0; j < nBlocks; ++j)
-				{
-					std::cout << "list = [";
-					for (unsigned int k = 0; k < i; ++k)
-					{
-						std::cout << _vector.back();
-						if (k + 1 < i)
-							std::cout << ", ";
-						main[j].push_back(_vector.back());
-						_vector.pop_back();
-					}
-					std::cout << "]" << std::endl;
-				}
-				std::cout << std::endl;
-				b = !b;
-			}
-		}
-
-
+		pend_index = 0;
+		unsigned int main_index = 0;
 		for (unsigned int j = 0; j < nBlocks; ++j)
 		{
-			std::cout << "list = [";
-			for (unsigned int k = 0; k < i; ++k)
+			if (b == false && j + 1 < nBlocks)
 			{
-				std::cout << _vector.back();
-				if (k + 1 < i)
-					std::cout << ", ";
-				lists[j].push_back(_vector.back());
-				_vector.pop_back();
-			}
-			std::cout << "]" << std::endl;
-		}
-		std::cout << std::endl;
-
-
-
-		for (int j = nBlocks - 1; j >= 0; j -= 2)
-		{
-			if (lists[j].front() < lists[j - 1].front())
-			{
-				while (!lists[j].empty())
+				std::vector<int> tmp;
+				// std::cout << "pend[" << pend_index << "] = [";
+				for (unsigned int k = 0; k < i; ++k)
 				{
-					_vector.push_back(lists[j].back());
-					lists[j].pop_back();
+					// std::cout << _vector.back();
+					// if (k + 1 < i)
+					// 	std::cout << ", ";
+					tmp.push_back( _vector.back());
+					_vector.pop_back();
 				}
-				while (!lists[j - 1].empty())
-				{
-					_vector.push_back(lists[j - 1].back());
-					lists[j - 1].pop_back();
-				}
+				pend.push_back(tmp);
+				++pend_index;
+				// std::cout << "]" << std::endl;
+				// std::cout << std::endl;
+				b = true;
 			}
 			else
 			{
-				while (!lists[j - 1].empty())
+				std::vector<int> tmp;
+				// std::cout << "HERE" << std::endl;
+				// std::cout << "main[" << maini << "] = [";
+				for (unsigned int k = 0; k < i; ++k)
 				{
-					_vector.push_back(lists[j - 1].back());
-					lists[j - 1].pop_back();
+					// std::cout << _vector.back();
+					// if (k + 1 < i)
+					// 	std::cout << ", ";
+					tmp.push_back(_vector.back());
+					_vector.pop_back();
 				}
-				while (!lists[j].empty())
-				{
-					_vector.push_back(lists[j].back());
-					lists[j].pop_back();
-				}
+				main.push_back(tmp);
+				++main_index;
+				// std::cout << "]" << std::endl;
+				// std::cout << std::endl;
+				b = false;
 			}
 		}
+
+		std::cout << "isempty = " << pend.empty() << std::endl;
+
+		while (!pend.empty())
+		{
+			std::cout << "HERE" << std::endl;
+			std::cout << "pend[0] = ";
+			Print_vector(pend[0]);
+			std::cout << std::endl;
+		}
+		--main_index;
+		--pend_index;
+		for (unsigned int j = 0; j < nBlocks; ++j)
+		{
+			for (unsigned int k = 0; k < i; ++k)
+			{
+				_vector.push_back(main[main_index].back());
+				main[main_index].pop_back();
+			}
+			--main_index;
+		}
+
+
+		// for (unsigned int j = 0; j < nBlocks; ++j)
+		// {
+		// 	if (b == false && j != 0 && j != 1)
+		// 	{
+		//
+		// 		std::cout << "pend[" << pend_index << "] = [";
+		// 		for (unsigned int k = 0; k < i; ++k)
+		// 		{
+		// 			std::cout << pend[pend_index].back();
+		// 			if (k + 1 < i)
+		// 				std::cout << ", ";
+		// 			_vector.push_back(pend[pend_index].back());
+		// 			pend[pend_index].pop_back();
+		// 		}
+		// 		std::cout << "]" << std::endl;
+		// 		std::cout << std::endl;
+		// 		--pend_index;
+		// 		b = true;
+		// 	}
+		// 	else
+		// 	{
+		// 		std::cout << "main[" << main_index << "] = [";
+		// 		for (unsigned int k = 0; k < i; ++k)
+		// 		{
+		// 			std::cout << main[main_index].back();
+		// 			if (k + 1 < i)
+		// 				std::cout << ", ";
+		// 			_vector.push_back(main[main_index].back());
+		// 			main[main_index].pop_back();
+		// 		}
+		// 		std::cout << "]" << std::endl;
+		// 		std::cout << std::endl;
+		// 		--main_index;
+		// 		b = false;
+		// 	}
+		// }
 		while (!save.empty())
 		{
 			_vector.push_back(save.back());
 			save.pop_back();
 		}
 		i /= 2;
+		Print_vector(_vector);
+		std::cout << std::endl;
 	}
 }
