@@ -7,15 +7,21 @@
 #include <iostream>
 #include <algorithm>
 #include <vector>
+#include <deque>
+#include <stdexcept>
 
-
+template <typename C>
 class PmergeMe
 {
 	public:
-		bool Init(char **argv);
-		void PmergMe();
+		PmergeMe() {} ;
+		PmergeMe(char **argv);
+
+		void MakePairs(std::vector<std::pair<int, int> > &pairs, int &rest);
+		void SplitPairs(const std::vector<std::pair<int, int> > &pairs, C &MainChain, C &Pend);
+
+		void FordJohnson();
 
 	private:
-		std::vector<int>  _vector;
-
+		C _container;
 };
