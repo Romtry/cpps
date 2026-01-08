@@ -31,9 +31,6 @@ class BitcoinExchange
 		static std::string	Possible_Day(const std::string &line, const std::string &name, unsigned int lineIndex);
 		bool				ParseValue(const std::string &value, unsigned int lineIndex);
 
-
-		// void				Parser(std::fstream &fin, std::map<std::string, std::string> &map, const char *comp, const std::string &name);
-
 		static std::string	To_string_cpp98(const int value);
 
 	private:

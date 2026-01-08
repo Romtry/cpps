@@ -8,7 +8,7 @@
 
 void RPN::exec(const std::string &input)
 {
-	for (unsigned int i = 0; input[i]; )
+	for (unsigned int i = 0; input.size() > i; )
 	{
 		if (std::isdigit(input[i]))
 			_numbers.push(input[i] - '0');
@@ -33,30 +33,30 @@ void RPN::exec(const std::string &input)
 			{
 				case 0:
 				{
-					std::cout << _numbers.top() << " + " << tmp << std::endl;
+					// std::cout << _numbers.top() << " + " << tmp << std::endl;
 					_numbers.top() += tmp;
-					std::cout << "res = " << _numbers.top() << std::endl;
+					// std::cout << "res = " << _numbers.top() << std::endl;
 					break;
 				}
 				case 1:
 				{
-					std::cout << _numbers.top() << " - " << tmp << std::endl;
+					// std::cout << _numbers.top() << " - " << tmp << std::endl;
 					_numbers.top() -= tmp;
-					std::cout << "res = " << _numbers.top() << std::endl;
+					// std::cout << "res = " << _numbers.top() << std::endl;
 					break;
 				}
 				case 2:
 				{
-					std::cout << _numbers.top() << " * " << tmp << std::endl;
+					// std::cout << _numbers.top() << " * " << tmp << std::endl;
 					_numbers.top() *= tmp;
-					std::cout << "res = " << _numbers.top() << std::endl;
+					// std::cout << "res = " << _numbers.top() << std::endl;
 					break;
 				}
 				case 3:
 				{
-					std::cout << _numbers.top() << " / " << tmp << std::endl;
+					// std::cout << _numbers.top() << " / " << tmp << std::endl;
 					_numbers.top() /= tmp;
-					std::cout << "res = " << _numbers.top() << std::endl;
+					// std::cout << "res = " << _numbers.top() << std::endl;
 					break;
 				}
 				default:;
